@@ -17,16 +17,14 @@ export default function Login({ navigation }) {
     }, [])
 
     async function handleSubmit() {
-        const response = await api.post('/autenticar', {
-            cpf, senha
-        })        
+        const response = await api.post('/autenticar', { cpf, senha })        
 
         const { _id, nome } = response.data
 
         await AsyncStorage.setItem('user', _id)        
         await AsyncStorage.setItem('nome', nome) 
         
-        navigation.navigate('ListHistory')
+        navigation.navigate('List')
     }
 
     return <KeyboardAvoidingView behavior="padding" style={styles.container}>

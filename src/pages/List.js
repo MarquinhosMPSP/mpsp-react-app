@@ -1,34 +1,34 @@
 import React, { useState, useEffect } from 'react'
-import { SafeAreaView, StyleSheet, AsyncStorage } from 'react-native'
+import { SafeAreaView, Text, Platform, StyleSheet, AsyncStorage } from 'react-native'
 
-import ReportList from '../components/ReportList'
-
-import api from '../services/api'
+import HistoryList from '../components/HistoryList'
 
 export default function List() {
 
-    const [reports, setReports] = useState([])
     const [name, setName] = useState('')
+    const [user, setUser] = useState('')
 
     useEffect(() => {
-        AsyncStorage.getItem('nome').then(nome => {
-            setReports(getReports(nome));
-        })
+        AsyncStorage.getItem('nome').then(setName)
+        AsyncStorage.getItem('user').then(setUser)
     }, [])
-
-    async function getReports(nome) {
-        response = await api.get(`/historico/${nome}`)
-    }
 
     return (
         <SafeAreaView style={styles.container}>
-            <ReportList />
+            <Text style={styles.titlePage}>Histórico de relatórios</Text>
+            {name && user ? <HistoryList key={user} name={name} /> : null}
         </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        paddingTop: Platform.OS === 'android' ? 25 : 0,
+    },
+    titlePage: {
+        fontWeight: 'bold',
+        marginTop: 15,
+        fontSize: 24,
+        alignSelf: 'center'
     }
 })
