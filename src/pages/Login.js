@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { View, AsyncStorage, KeyboardAvoidingView, StyleSheet, TextInput, TouchableOpacity, Text } from 'react-native'
+import { View, AsyncStorage, KeyboardAvoidingView, StyleSheet, TextInput, TouchableOpacity, Text, Image } from 'react-native'
+
+import logo from '../assets/unikor.png'
 
 import api from '../services/api'
 
@@ -29,6 +31,10 @@ export default function Login({ navigation }) {
 
     return <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <View style={styles.form}>
+            <Image style={styles.logo} source={logo} />
+            
+            <Text style={styles.subTitle}>Relatórios integrados</Text>
+
             <Text style={styles.label}>SEU CPF *</Text>
             <TextInput
                 style={styles.input}
@@ -38,16 +44,18 @@ export default function Login({ navigation }) {
                 autoCorrect={false}
                 value={cpf}
                 onChangeText={setCpf}
+                autoFocus={true}
             />
 
             <Text style={styles.label}>SUA SENHA *</Text>
             <TextInput
                 style={styles.input}
                 placeholder="Sua senha"
-                autoCapitalize="words"
                 autoCorrect={false}
                 value={senha}
                 onChangeText={setSenha}
+                autoCompleteType='password'
+                secureTextEntry={true}
             />
 
             <TouchableOpacity onPress={handleSubmit} style={styles.button}>
@@ -84,7 +92,7 @@ const styles = StyleSheet.create({
     },
     button: {
         height: 42,
-        backgroundColor: 'red',
+        backgroundColor: '#DC3545',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 2,
@@ -94,4 +102,15 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 16
     },
+    logo: {
+        height: 110,
+        resizeMode: "contain",
+        alignSelf: "center"
+    },
+    subTitle: {
+        fontWeight: "bold",
+        fontSize: 18,
+        alignSelf: "center",
+        marginBottom: 30
+    }
 })

@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { Text, View, SafeAreaView, StyleSheet, Platform, TouchableOpacity } from 'react-native'
+import React from 'react'
+import { Text, View, SafeAreaView, StyleSheet, Platform, TouchableOpacity, Image, TouchableHighlight, AsyncStorage } from 'react-native'
+
+import logo from '../assets/unikor.png'
 
 export default function Report({ navigation }) {
 
@@ -9,8 +11,20 @@ export default function Report({ navigation }) {
         navigation.navigate('List')
     }
 
+    async function handleLogout() {
+        await AsyncStorage.removeItem('nome')
+        await AsyncStorage.removeItem('user')
+
+        navigation.navigate('Login');
+    }
+
     return (
         <SafeAreaView style={styles.container}>
+
+            <TouchableHighlight onPress={handleLogout}>
+                <Image style={styles.logo} source={logo} />
+            </TouchableHighlight>
+
             <Text style={styles.titleText}>Dados do relatório</Text>
 
             <View>
@@ -57,7 +71,7 @@ const styles = StyleSheet.create({
     },
     button: {
         height: 42,
-        backgroundColor: 'red',
+        backgroundColor: '#DC3545',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 2,
@@ -68,4 +82,10 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 16,
     },
+    logo: {
+        marginTop: 20,
+        height: 60,
+        resizeMode: "contain",
+        alignSelf: "center"
+    }
 })

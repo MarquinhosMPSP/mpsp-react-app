@@ -24,6 +24,7 @@ function History({ name, navigation }) {
 
     return (
         <View style={styles.container}>
+
             {reports.length > 0
                 ? <FlatList
                     style={styles.list}
@@ -36,7 +37,7 @@ function History({ name, navigation }) {
                             <Text style={styles.dataText}>{item.dataRelatorio}</Text>
 
                             <TouchableOpacity onPress={() => handleNavigate(item)} style={styles.button}>
-                                <Text style={styles.buttonText}>Visualizar relatório</Text>
+                                <Text style={styles.buttonText}>Visualizar</Text>
                             </TouchableOpacity>
                         </View>
                     )}
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
     },
     button: {
         height: 32,
-        backgroundColor: 'red',
+        backgroundColor: '#DC3545',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 2,
