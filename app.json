@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Unikor",
-    "slug": "mobile",
+    "slug": "unikor-app",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [
