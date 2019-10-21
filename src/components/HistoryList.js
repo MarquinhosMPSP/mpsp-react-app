@@ -43,6 +43,11 @@ function History({ name, navigation }) {
               </Feather>
               <Text style={styles.dateText}>{item.dataRelatorio}</Text>
 
+              <Feather name="user" size={18} style={styles.icon}>
+                <Text style={styles.infoText}> Nome Pesquisado:</Text>
+              </Feather>
+              <Text style={styles.dateText}>{item.alcunha}</Text>
+
               <TouchableOpacity
                 onPress={() => handleNavigate(item)}
                 style={styles.button}
